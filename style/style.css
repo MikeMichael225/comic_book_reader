@@ -5,6 +5,11 @@
     font-family: 'Noto Sans JP', sans-serif;
 }
 
+:root {
+    --bg-color: #252525;
+    --color: tomato;
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -17,7 +22,7 @@ body {
     overflow: hidden;
     user-select: none;
 
-    background-color: #124653;
+    background-color: var(--bg-color);
 }
 
 button {

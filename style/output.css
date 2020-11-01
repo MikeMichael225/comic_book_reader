@@ -72,7 +72,7 @@
 }
 
 .help-message strong {
-    color: orange;
+    color: var(--color);
 }
 
 .help-message button {

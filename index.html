@@ -15,14 +15,17 @@
 </head>
 
 <body ondragstart="return false">
-    <div class="upload">
+
+    <div class="upload hide">
         Drop your comic here!
     </div>
-    <div class="upload-default-container">
+
+    <div class="upload-default-container hide">
         <h1>Upload your comic!</h1>
         <input type="file" class="upload-default"></input>
     </div>
-    <div class="output-container">
+
+    <div class="output-container hide">
         <button class="control-btn left-btn"></button>
         <img class="output">
         <button class="control-btn right-btn"></button>
@@ -37,12 +40,16 @@
             <button>Okay</button>
         </div>
     </div>
+
 </body>
+
 <script>
+(function(){
     const message = document.querySelector('.help-message');
     const btn = document.querySelector('.help-message button');
 
     btn.onclick = function () { message.classList.add('hide'); }
+}());
 </script>
 
 </html>
