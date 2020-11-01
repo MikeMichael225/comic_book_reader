@@ -14,14 +14,23 @@ var imgURLs = [];
         dropZone.classList.remove('hide');
         setDropEvents(dropZone);
     }
+
     outputContainer.classList.add('hide');
 
     function setUploadEvents(element) {
-        element.addEventListener('input', handleUpload);
+        element.addEventListener('input', function (event) {
+            readFile(event.target.files[0]);
+        });
     }
 
     function setDropEvents(element) {
-        element.addEventListener('drop', handleDrop);
+        element.addEventListener('drop', function (event) {
+            event.preventDefault();
+
+            readFile(event.dataTransfer.items[0].getAsFile());
+
+            event.target.classList.remove('over');
+        });
 
         element.addEventListener('dragover', function (event) {
             event.preventDefault();
@@ -34,19 +43,6 @@ var imgURLs = [];
         })
     }
 
-    function handleUpload(event) {
-        const uploadedFile = event.target.files[0];
-        readFile(uploadedFile);
-    }
-
-    function handleDrop(event) {
-        event.preventDefault();
-
-        const uploadedFile = event.dataTransfer.items[0].getAsFile();
-        readFile(uploadedFile);
-
-        event.target.classList.remove('over');
-    }
 
     function readFile(file) {
         const reader = new FileReader();
@@ -57,39 +53,29 @@ var imgURLs = [];
 
     function unzipAndDisplay(event) {
         const imgs = [];
-        imgURLs = [];
 
         JSZip.loadAsync(new Blob([event.target.result])).then(function (zip) {
-            let target = 0;
-            let curr = 0;
 
             zip.forEach((path, entry) => {
-                if (entry.dir == false)
-                    target++
-            });
-            zip.forEach((path, entry) => {
                 if (entry.dir == false) {
-                    entry.async('arraybuffer').then(result => {
-                        imgs.push({
-                            'path': path,
-                            'img': result
-                        });
-                        curr++
-                    }).then(() => {
-                        if (curr == target) {
-                            imgs.sort((a, b) => {
-                                if (a.path > b.path)
-                                    return 1;
-                                return -1;
-                            });
-                            imgs.forEach(value => {
-                                imgURLs.push(URL.createObjectURL(new Blob([value.img])));
-                            });
-                            return update();
-                        }
-                    });
+                    imgs.push(entry.async('arraybuffer').then(result => {
+                        return result = { 'path': path, 'img': result }
+                    }));
                 }
             })
+
+            Promise.all(imgs).then(results => {
+                results.sort((a, b) => {
+                    if (a.path > b.path)
+                        return 1;
+                    return -1;
+                });
+                results.forEach(value => {
+                    imgURLs.push(URL.createObjectURL(new Blob([value.img])));
+                });
+                return update();
+            });
+
         }).catch(err => {
             console.error(err);
             toggleElements();
@@ -116,3 +102,4 @@ var imgURLs = [];
         return ((window.innerWidth <= 800) && (window.innerHeight <= 600));
     }
 }());
+
