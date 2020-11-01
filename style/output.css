@@ -1,0 +1,110 @@
+.output-container {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+
+    margin: 0;
+
+    background-color: black;
+}
+
+.output {
+    width: 100%;
+    max-height: 100vh;
+    object-fit: contain;
+}
+
+.output-container .control-btn {
+    position: absolute;
+    display: inline;
+
+    height: 100vh;
+    width: 50vw;
+
+    padding: 0;
+
+    background-color: transparent;
+
+    border: none;
+    outline: none;
+    
+    cursor: cell !important;
+}
+
+.right-btn {
+    right: 0;
+}
+
+.left-btn {
+    left: 0;
+}
+
+
+
+
+.help-message {
+    position: absolute;
+
+    font-size: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 100vh;
+    width: 100vw;
+
+    background-color: rgba(0,0,0,.8);
+    color: white;
+    text-align: center;
+
+    z-index: 10;
+}
+
+.help-message h2 {
+    font-weight: normal;
+}
+
+.help-message strong {
+    color: orange;
+}
+
+.help-message button {
+    color: white;
+    background-color: transparent;
+
+    border: 2px solid white;
+
+    font-size: 1.5rem;
+    text-transform: uppercase;
+
+    padding: .5rem;
+    margin-top: 2rem;
+
+    cursor: pointer;
+
+    outline: none;
+}
+
+.help-message button:hover {
+    color: black;
+    background-color: white;
+}
+
+@media screen and (max-height: 350px) {
+    .help-message {
+        font-size: .9rem;
+    }
+    .help-message h1 {
+        margin: 0;
+    }
+    .help-message button {
+        margin: 0;
+    }
+}

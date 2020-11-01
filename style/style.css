@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+
+    overflow: hidden;
+    user-select: none;
+
+    background-color: #124653;
+}
+
+button {
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+}
+
+.hide {
+    display: none !important;
+}

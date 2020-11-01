@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comic Book Reader</title>
+    <script src="script/jszip.min.js"></script>
+    <script src="script/uploadHandler.js" defer></script>
+    <script src="script/outputHandler.js" defer></script>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/upload.css">
+    <link rel="stylesheet" href="style/output.css">
+    <link rel="shortcut icon" href="favico.png" type="image/png">
+</head>
+
+<body ondragstart="return false">
+    <div class="upload">
+        Drop your comic here!
+    </div>
+    <div class="upload-default-container">
+        <h1>Upload your comic!</h1>
+        <input type="file" class="upload-default"></input>
+    </div>
+    <div class="output-container">
+        <button class="control-btn left-btn"></button>
+        <img class="output">
+        <button class="control-btn right-btn"></button>
+        <div class="help-message">
+            <h1>Controls</h1>
+            <h2>Click on the <strong>right side</strong> of the <strong>screen</strong> to go to the <strong>next
+                    page</strong></h2>
+            </h2>
+            <h2>Click on the <strong>left side</strong> of the <strong>screen</strong> to go back to the
+                <strong>previous
+                    page</strong></h2>
+            <button>Okay</button>
+        </div>
+    </div>
+</body>
+<script>
+    const message = document.querySelector('.help-message');
+    const btn = document.querySelector('.help-message button');
+
+    btn.onclick = function () { message.classList.add('hide'); }
+</script>
+
+</html>
